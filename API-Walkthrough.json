@@ -1,34 +1,38 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Sample API for walkthrough purposes",
+    "description" : "This is Walkthrough API to access functions in AXA Indonesia. We cover various process from Customer Onboarding, Payment Submission and Claim Submission, For more detail, please access our API Portal at https://developer.axa.co.id",
     "version" : "1.0",
-    "title" : "API-Walkthrough"
+    "title" : "AXA Indonesia API-Walkthrough",
+	"termsOfService": "https://developer.axa.co.id/terms/",
+	"contact": {
+      "email": "api.support@axa.co.id"
+    }
   },
   "host" : "axaiddev.apigw-az-au.webmethods.io",
   "basePath" : "/gateway/API-Walkthrough/1.0",
-  "tags" : [ {
-    "name" : "API"
+   "tags" : [ {
+    "name" : "New Business",
+	"description": "This API is about Customer Onboarding process"
   }, {
-    "name" : "New Business"
+    "name" : "Claim",
+	"description": "This API is about Claim Submission process"
   }, {
-    "name" : "Claim"
-  }, {
-    "name" : "Payment"
-  }, {
-    "name" : "Walkthrough"
-  } ],
+    "name" : "Payment",
+	"description": "This API is about Payment Confirmation process"
+  }],
   "schemes" : [ "https" ],
   "paths" : {
     "/payment" : {
       "post" : {
-        "tags" : [ "API", "New Business", "Claim", "Payment", "Walkthrough" ],
+        "tags" : [  "Payment" ],
+		"summary": "Sending Payment Confirmation to Complete Customer Onboarding process",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
           "name" : "body",
-          "required" : false,
+          "required" : true,
           "schema" : {
             "type" : "object",
             "required" : [ "Customer" ],
@@ -306,13 +310,14 @@
     },
     "/submitClaim" : {
       "post" : {
-        "tags" : [ "API", "New Business", "Claim", "Payment", "Walkthrough" ],
+        "tags" : [ "Claim" ],
+		"summary": "This API to send Customer's  Claim Submission Process",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
           "name" : "body",
-          "required" : false,
+          "required" : true,
           "schema" : {
             "type" : "object",
             "required" : [ "Policies" ],
@@ -651,13 +656,14 @@
     },
     "/newBusiness" : {
       "post" : {
-        "tags" : [ "API", "New Business", "Claim", "Payment", "Walkthrough" ],
+        "tags" : [ "New Business"],
+		"summary": "This API to submit new Customer Onboarding process to AXA",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
           "name" : "body",
-          "required" : false,
+          "required" : true,
           "schema" : {
             "type" : "object",
             "properties" : {
