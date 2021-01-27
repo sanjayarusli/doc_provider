@@ -26,7 +26,7 @@
     "/payment" : {
       "post" : {
         "tags" : [  "Payment" ],
-		"summary": "Sending Payment Confirmation to Complete Customer Onboarding process",
+		"summary": "submitPayment",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -311,7 +311,7 @@
     "/submitClaim" : {
       "post" : {
         "tags" : [ "Claim" ],
-		"summary": "This API to send Customer's  Claim Submission Process",
+		"summary": "submitClaim",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -657,7 +657,7 @@
     "/newBusiness" : {
       "post" : {
         "tags" : [ "New Business"],
-		"summary": "This API to submit new Customer Onboarding process to AXA",
+		"summary": "addNewCustomer",
 		"operationId": "addNewCustomer",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
