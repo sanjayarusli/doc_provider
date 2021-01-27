@@ -658,6 +658,7 @@
       "post" : {
         "tags" : [ "New Business"],
 		"summary": "This API to submit new Customer Onboarding process to AXA",
+		"operationId": "addNewCustomer",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -1383,6 +1384,21 @@
             }
           }
         }
+      }
+    }
+  },
+	"securityDefinitions": {
+    "x-axa-apikey": {
+      "type": "apiKey",
+      "name": "x-axa-apikey",
+      "in": "header"
+    },
+    "auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://axaiddev.apigw-az-au.webmethods.io/invoke/pub.apigateway.oauth2/getAccessToken",
+      "flow": "implicit",
+      "scopes": {
+        "General": "General scope"
       }
     }
   }
