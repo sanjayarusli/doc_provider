@@ -1388,12 +1388,12 @@
     }
   },
 	"securityDefinitions": {
-    "x-axa-apikey": {
+    "Api Key": {
       "type": "apiKey",
       "name": "x-axa-apikey",
       "in": "header"
     },
-    "auth": {
+    "Oauth": {
       "type": "oauth2",
       "authorizationUrl": "https://axaiddev.apigw-az-au.webmethods.io/invoke/pub.apigateway.oauth2/getAccessToken",
       "flow": "implicit",
