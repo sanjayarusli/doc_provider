@@ -1,0 +1,1383 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Sample API for walkthrough purposes",
+    "version" : "1.0",
+    "title" : "API-Walkthrough"
+  },
+  "host" : "axaiddev.apigw-az-au.webmethods.io",
+  "basePath" : "/gateway/API-Walkthrough/1.0",
+  "tags" : [ {
+    "name" : "API"
+  }, {
+    "name" : "New Business"
+  }, {
+    "name" : "Claim"
+  }, {
+    "name" : "Payment"
+  }, {
+    "name" : "Walkthrough"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/payment" : {
+      "post" : {
+        "tags" : [ "API", "New Business", "Claim", "Payment", "Walkthrough" ],
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "object",
+            "required" : [ "Customer" ],
+            "properties" : {
+              "Customer" : {
+                "type" : "object",
+                "description" : "Parent Payload",
+                "title" : "Customer",
+                "properties" : {
+                  "hasPolicyAccount" : {
+                    "type" : "array",
+                    "description" : "Policy payload",
+                    "title" : "Haspolicyaccount",
+                    "items" : {
+                      "type" : "object",
+                      "title" : "Items",
+                      "properties" : {
+                        "paymentStatusCd" : {
+                          "type" : "string",
+                          "description" : "Payment Status Code for Policy",
+                          "title" : "Paymentstatuscd",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "payorCd" : {
+                          "type" : "string",
+                          "description" : "Payor Code",
+                          "title" : "Payorcd",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "hasBilling" : {
+                          "type" : "object",
+                          "description" : "Billing payload",
+                          "title" : "Hasbilling",
+                          "properties" : {
+                            "save_token_id" : {
+                              "type" : "string",
+                              "description" : "",
+                              "title" : "Save_token_id",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            }
+                          }
+                        },
+                        "premiumAMT" : {
+                          "type" : "string",
+                          "description" : "Premium Amount request",
+                          "title" : "Premiumamt",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "policyNO" : {
+                          "type" : "string",
+                          "description" : "Policy Number",
+                          "title" : "Policyno",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "policyEffectiveDTTM" : {
+                          "type" : "string",
+                          "description" : "Policy Effective Date",
+                          "title" : "Policyeffectivedttm",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "paymentMethodCD" : {
+                          "type" : "string",
+                          "description" : "Payment Method Code for Policy",
+                          "title" : "Paymentmethodcd",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "hasDetailsOfPolicyTransactionIn" : {
+                          "type" : "array",
+                          "description" : "Detail Policy Transaction payload",
+                          "title" : "Hasdetailsofpolicytransactionin",
+                          "items" : {
+                            "type" : "object",
+                            "title" : "Items",
+                            "properties" : {
+                              "hasTransactionAccountDetailsIn" : {
+                                "type" : "array",
+                                "description" : "Transaction Account Details payload",
+                                "title" : "Hastransactionaccountdetailsin",
+                                "items" : {
+                                  "type" : "object",
+                                  "title" : "Items",
+                                  "properties" : {
+                                    "cardTypeCD" : {
+                                      "type" : "string",
+                                      "title" : "Cardtypecd",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "cardNO" : {
+                                      "type" : "string",
+                                      "description" : "Card No",
+                                      "title" : "Cardno",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "paymentModeCD" : {
+                          "type" : "string",
+                          "description" : "Payment Mode Code for Policy",
+                          "title" : "Paymentmodecd",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        }
+                      },
+                      "required" : [ "policyNO", "premiumAMT" ]
+                    }
+                  }
+                },
+                "required" : [ "hasPolicyAccount" ]
+              }
+            },
+            "title" : "Root"
+          },
+          "x-examples" : {
+            "application/json" : "{\n  \"Customer\": {\n      \"hasPolicyAccount\": [\n        {\n          \"policyEffectiveDTTM\": \"2021-01-22T11:01:28\",\n          \"policyNO\": \"410-430-0105904\",\n          \"paymentMethodCD\": \"DBB\",\n          \"paymentModeCD\": \"P\",\n          \"paymentStatusCd\": \"PAI\",\n          \"premiumAMT\": \"5000\",\n          \"payorCd\": \"123\",\n          \"hasDetailsOfPolicyTransactionIn\": [\n            {\n              \"hasTransactionAccountDetailsIn\": [\n                {\n                  \"cardTypeCD\": \"-\",\n                  \"cardNO\": \"-\"\n                }\n              ]\n            }\n          ],\n          \"hasBilling\": {\n            \"save_token_id\": \"-\"\n          }\n        }\n      ]\n    }\n}"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "examples" : {
+              "application/json" : "{\n\t\"Body\": {\n\t\t\"Customer\": {\n\t\t\t\"canBeIndividual\": {\n\t\t\t\t\"hasAddressesIn\": [\n\t\t\t\t\t{}\n\t\t\t\t]\n\t\t\t},\n\t\t\t\"hasPolicyAccount\": [\n\t\t\t\t{\n\t\t\t\t\t\"policyEffectiveDTTM\": \"2021-01-22T11:01:28\",\n\t\t\t\t\t\"hasNameValue\": [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"name\": \"correspondenceType\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"name\": \"minClaimStartDateInpatient\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"name\": \"minClaimStartDateOutpatient\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"name\": \"maxExpiredDayInpatient\",\n\t\t\t\t\t\t\t\"value\": \"0\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"name\": \"maxExpiredDayOutpatient\",\n\t\t\t\t\t\t\t\"value\": \"0\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"name\": \"maxExpiredDayCriticalIllness\",\n\t\t\t\t\t\t\t\"value\": \"0\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"name\": \"maxExpiredDayDeath\",\n\t\t\t\t\t\t\t\"value\": \"0\"\n\t\t\t\t\t\t}\n\t\t\t\t\t],\n\t\t\t\t\t\"premiumAMT\": \"5000\",\n\t\t\t\t\t\"policyNO\": \"410-430-0105904\",\n\t\t\t\t\t\"policyStatusCD\": \"IN\",\n\t\t\t\t\t\"paymentStatusCd\": \"IN\",\n\t\t\t\t\t\"paidToDT\": \"2022-04-22T10:50:38\"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t\"operation\": \"submitPayment\",\n\t\t\"transactionId\": \"Test01q2710SAN01\",\n\t\t\"status\": \"1\",\n\t\t\"entity\": \"AFI\",\n\t\t\"service\": \"submitPayment\",\n\t\t\"appID\": \"DMTM_API\"\n\t}\n}"
+            },
+            "schema" : {
+              "type" : "object",
+              "required" : [ "Body" ],
+              "properties" : {
+                "Body" : {
+                  "type" : "object",
+                  "title" : "Body",
+                  "properties" : {
+                    "Customer" : {
+                      "type" : "object",
+                      "title" : "Customer",
+                      "properties" : {
+                        "canBeIndividual" : {
+                          "type" : "object",
+                          "title" : "Canbeindividual",
+                          "properties" : {
+                            "hasAddressesIn" : {
+                              "type" : "array",
+                              "title" : "Hasaddressesin",
+                              "items" : {
+                                "type" : "object",
+                                "title" : "Items",
+                                "properties" : { }
+                              }
+                            }
+                          },
+                          "required" : [ "hasAddressesIn" ]
+                        },
+                        "hasPolicyAccount" : {
+                          "type" : "array",
+                          "title" : "Haspolicyaccount",
+                          "items" : {
+                            "type" : "object",
+                            "title" : "Items",
+                            "properties" : {
+                              "paymentStatusCd" : {
+                                "type" : "string",
+                                "title" : "Paymentstatuscd",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "paidToDT" : {
+                                "type" : "string",
+                                "title" : "Paidtodt",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "premiumAMT" : {
+                                "type" : "string",
+                                "title" : "Premiumamt",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "hasNameValue" : {
+                                "type" : "array",
+                                "title" : "Hasnamevalue",
+                                "items" : {
+                                  "type" : "object",
+                                  "title" : "Items",
+                                  "properties" : {
+                                    "name" : {
+                                      "type" : "string",
+                                      "title" : "Name",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    }
+                                  },
+                                  "required" : [ "name" ]
+                                }
+                              },
+                              "policyNO" : {
+                                "type" : "string",
+                                "title" : "Policyno",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "policyEffectiveDTTM" : {
+                                "type" : "string",
+                                "title" : "Policyeffectivedttm",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "policyStatusCD" : {
+                                "type" : "string",
+                                "title" : "Policystatuscd",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              }
+                            },
+                            "required" : [ "hasNameValue", "paidToDT", "paymentStatusCd", "policyEffectiveDTTM", "policyNO", "policyStatusCD", "premiumAMT" ]
+                          }
+                        }
+                      },
+                      "required" : [ "canBeIndividual", "hasPolicyAccount" ]
+                    },
+                    "service" : {
+                      "type" : "string",
+                      "title" : "Service",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "appID" : {
+                      "type" : "string",
+                      "title" : "Appid",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "operation" : {
+                      "type" : "string",
+                      "title" : "Operation",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "transactionId" : {
+                      "type" : "string",
+                      "title" : "Transactionid",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "entity" : {
+                      "type" : "string",
+                      "title" : "Entity",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "status" : {
+                      "type" : "string",
+                      "title" : "Status",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    }
+                  },
+                  "required" : [ "Customer", "appID", "entity", "operation", "service", "status", "transactionId" ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submitClaim" : {
+      "post" : {
+        "tags" : [ "API", "New Business", "Claim", "Payment", "Walkthrough" ],
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "object",
+            "required" : [ "Policies" ],
+            "properties" : {
+              "Policies" : {
+                "type" : "object",
+                "description" : "Parent Payload",
+                "title" : "Policies",
+                "properties" : {
+                  "hasDetailsOfClaimIn" : {
+                    "type" : "array",
+                    "description" : "Claim Payload",
+                    "title" : "Hasdetailsofclaimin",
+                    "items" : {
+                      "type" : "object",
+                      "title" : "Items",
+                      "properties" : {
+                        "diagnosticCD1" : {
+                          "type" : "string",
+                          "description" : "Diagnostic Code 1",
+                          "title" : "Diagnosticcd1",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "hasClaimDetails" : {
+                          "type" : "array",
+                          "description" : "Claim Details Payload",
+                          "title" : "Hasclaimdetails",
+                          "items" : {
+                            "type" : "object",
+                            "title" : "Items",
+                            "properties" : {
+                              "hasParty" : {
+                                "type" : "array",
+                                "description" : "Party Payload",
+                                "title" : "Hasparty",
+                                "items" : {
+                                  "type" : "object",
+                                  "title" : "Items",
+                                  "properties" : {
+                                    "canBeIndividual" : {
+                                      "type" : "object",
+                                      "description" : "Claim Party Payload",
+                                      "title" : "Canbeindividual",
+                                      "properties" : {
+                                        "hasPartyAccountDetailsIn" : {
+                                          "type" : "object",
+                                          "description" : "Claim Party Account Payload",
+                                          "title" : "Haspartyaccountdetailsin",
+                                          "properties" : {
+                                            "payorFirstNM" : {
+                                              "type" : "string",
+                                              "description" : "Claim Party First Name",
+                                              "title" : "Payorfirstnm",
+                                              "pattern" : "^.*$",
+                                              "default" : ""
+                                            },
+                                            "accountNO" : {
+                                              "type" : "string",
+                                              "description" : "Claim Party Bank Account Number",
+                                              "title" : "Accountno",
+                                              "pattern" : "^.*$",
+                                              "default" : ""
+                                            },
+                                            "bankName" : {
+                                              "type" : "string",
+                                              "description" : "Claim Party Bank Account Name",
+                                              "title" : "Bankname",
+                                              "pattern" : "^.*$",
+                                              "default" : ""
+                                            },
+                                            "branchCD" : {
+                                              "type" : "string",
+                                              "description" : "Claim Party Branch Code",
+                                              "title" : "Branchcd",
+                                              "pattern" : "^.*$",
+                                              "default" : ""
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "firstConsultationDate" : {
+                                "type" : "string",
+                                "description" : "First Consultation Date",
+                                "title" : "Firstconsultationdate",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "policyNO" : {
+                    "type" : "string",
+                    "description" : "Policy Code",
+                    "title" : "Policyno",
+                    "pattern" : "^.*$",
+                    "default" : ""
+                  },
+                  "hasDetailsOfRisksIn" : {
+                    "type" : "array",
+                    "description" : "Insured Payload",
+                    "title" : "Hasdetailsofrisksin",
+                    "items" : {
+                      "type" : "object",
+                      "title" : "Items",
+                      "properties" : {
+                        "insuredID" : {
+                          "type" : "string",
+                          "description" : "Insured Code",
+                          "title" : "Insuredid",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        }
+                      },
+                      "required" : [ "insuredID" ]
+                    }
+                  }
+                },
+                "required" : [ "hasDetailsOfRisksIn", "policyNO" ]
+              }
+            },
+            "title" : "Root"
+          },
+          "x-examples" : {
+            "application/json" : "{\n\t\"Policies\": {\n\t\t\"policyNO\": \"410-430-0105904\",\n\t\t\"hasDetailsOfRisksIn\": [\n\t\t\t{\n\t\t\t\t\"insuredID\": \"1233\"\n\t\t\t}\n\t\t],\n\t\t\"hasDetailsOfClaimIn\": [\n\t\t\t{\n\t\t\t\t\"diagnosticCD1\": \"Diagnose : gastritis\",\n\t\t\t\t\"hasClaimDetails\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"firstConsultationDate\": \"2021-01-22T11:00:00.000\",\n\t\t\t\t\t\t\"hasParty\": [\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"canBeIndividual\": {\n\t\t\t\t\t\t\t\t\t\"hasPartyAccountDetailsIn\": {\n\t\t\t\t\t\t\t\t\t\t\"payorFirstNM\": \"John Doe\",\n\t\t\t\t\t\t\t\t\t\t\"accountNO\": \"1234567\",\n\t\t\t\t\t\t\t\t\t\t\"bankName\": \"BCA\",\n\t\t\t\t\t\t\t\t\t\t\"branchCD\": \"kuningan\"\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t]\n\t\t\t\t\t}\n\t\t\t\t]\n\t\t\t}\n\t\t]\n\t}\n}\n"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "examples" : {
+              "application/json" : "{\n    \"Body\": {\n        \"operation\": \"ci\",\n        \"Policies\": [\n            {\n                \"hasNameValue\": [\n                    {\n                        \"name\": \"correspondenceType\"\n                    },\n                    {\n                        \"name\": \"minClaimStartDateInpatient\"\n                    },\n                    {\n                        \"name\": \"minClaimStartDateOutpatient\"\n                    },\n                    {\n                        \"name\": \"maxExpiredDayInpatient\",\n                        \"value\": \"0\"\n                    },\n                    {\n                        \"name\": \"maxExpiredDayOutpatient\",\n                        \"value\": \"0\"\n                    },\n                    {\n                        \"name\": \"maxExpiredDayCriticalIllness\",\n                        \"value\": \"0\"\n                    },\n                    {\n                        \"name\": \"maxExpiredDayDeath\",\n                        \"value\": \"0\"\n                    }\n                ],\n                \"hasDetailsOfClaimIn\": [\n                    {\n                        \"hasClaimUnitIn\": [\n                            {\n                                \"claimedAMT\": \"0\"\n                            }\n                        ],\n                        \"claimReferenceID\": \"202101220001\",\n                        \"hasClaimDetails\": [\n                            {}\n                        ],\n                        \"hasDocumentDetailsIn\": [\n                            {\n                                \"documentRemarkDesc\": \"202101220001\"\n                            }\n                        ]\n                    }\n                ],\n                \"premiumAMT\": \"0\",\n                \"policyNO\": \"410-430-0105904\",\n                \"hasDetailsOfRisksIn\": [\n                    {\n                        \"insuredID\": \"1233\",\n                        \"rejectionInd\": \"false\",\n                        \"hasPersonalDetailsIn\": [\n                            {\n                                \"hasAddressesIn\": [\n                                    {}\n                                ]\n                            }\n                        ]\n                    }\n                ]\n            }\n        ],\n        \"transactionId\": \"1ec389d2-1bc6-4970-8560-ed607a4aca88\",\n        \"status\": \"1\",\n        \"entity\": \"AFI\",\n        \"service\": \"addNewClaim\",\n        \"appID\": \"DMTM\"\n    }\n}"
+            },
+            "schema" : {
+              "type" : "object",
+              "required" : [ "Body" ],
+              "properties" : {
+                "Body" : {
+                  "type" : "object",
+                  "title" : "Body",
+                  "properties" : {
+                    "Policies" : {
+                      "type" : "array",
+                      "title" : "Policies",
+                      "items" : {
+                        "type" : "object",
+                        "title" : "Items",
+                        "properties" : {
+                          "hasDetailsOfClaimIn" : {
+                            "type" : "array",
+                            "title" : "Hasdetailsofclaimin",
+                            "items" : {
+                              "type" : "object",
+                              "title" : "Items",
+                              "properties" : {
+                                "hasClaimUnitIn" : {
+                                  "type" : "array",
+                                  "title" : "Hasclaimunitin",
+                                  "items" : {
+                                    "type" : "object",
+                                    "title" : "Items",
+                                    "properties" : {
+                                      "claimedAMT" : {
+                                        "type" : "string",
+                                        "title" : "Claimedamt",
+                                        "pattern" : "^.*$",
+                                        "default" : ""
+                                      }
+                                    },
+                                    "required" : [ "claimedAMT" ]
+                                  }
+                                },
+                                "hasClaimDetails" : {
+                                  "type" : "array",
+                                  "title" : "Hasclaimdetails",
+                                  "items" : {
+                                    "type" : "object",
+                                    "title" : "Items",
+                                    "properties" : { }
+                                  }
+                                },
+                                "claimReferenceID" : {
+                                  "type" : "string",
+                                  "title" : "Claimreferenceid",
+                                  "pattern" : "^.*$",
+                                  "default" : ""
+                                },
+                                "hasDocumentDetailsIn" : {
+                                  "type" : "array",
+                                  "title" : "Hasdocumentdetailsin",
+                                  "items" : {
+                                    "type" : "object",
+                                    "title" : "Items",
+                                    "properties" : {
+                                      "documentRemarkDesc" : {
+                                        "type" : "string",
+                                        "title" : "Documentremarkdesc",
+                                        "pattern" : "^.*$",
+                                        "default" : ""
+                                      }
+                                    },
+                                    "required" : [ "documentRemarkDesc" ]
+                                  }
+                                }
+                              },
+                              "required" : [ "claimReferenceID", "hasClaimDetails", "hasClaimUnitIn", "hasDocumentDetailsIn" ]
+                            }
+                          },
+                          "premiumAMT" : {
+                            "type" : "string",
+                            "title" : "Premiumamt",
+                            "pattern" : "^.*$",
+                            "default" : ""
+                          },
+                          "hasNameValue" : {
+                            "type" : "array",
+                            "title" : "Hasnamevalue",
+                            "items" : {
+                              "type" : "object",
+                              "title" : "Items",
+                              "properties" : {
+                                "name" : {
+                                  "type" : "string",
+                                  "title" : "Name",
+                                  "pattern" : "^.*$",
+                                  "default" : ""
+                                }
+                              },
+                              "required" : [ "name" ]
+                            }
+                          },
+                          "policyNO" : {
+                            "type" : "string",
+                            "title" : "Policyno",
+                            "pattern" : "^.*$",
+                            "default" : ""
+                          },
+                          "hasDetailsOfRisksIn" : {
+                            "type" : "array",
+                            "title" : "Hasdetailsofrisksin",
+                            "items" : {
+                              "type" : "object",
+                              "title" : "Items",
+                              "properties" : {
+                                "hasPersonalDetailsIn" : {
+                                  "type" : "array",
+                                  "title" : "Haspersonaldetailsin",
+                                  "items" : {
+                                    "type" : "object",
+                                    "title" : "Items",
+                                    "properties" : {
+                                      "hasAddressesIn" : {
+                                        "type" : "array",
+                                        "title" : "Hasaddressesin",
+                                        "items" : {
+                                          "type" : "object",
+                                          "title" : "Items",
+                                          "properties" : { }
+                                        }
+                                      }
+                                    },
+                                    "required" : [ "hasAddressesIn" ]
+                                  }
+                                },
+                                "rejectionInd" : {
+                                  "type" : "string",
+                                  "title" : "Rejectionind",
+                                  "pattern" : "^.*$",
+                                  "default" : ""
+                                },
+                                "insuredID" : {
+                                  "type" : "string",
+                                  "title" : "Insuredid",
+                                  "pattern" : "^.*$",
+                                  "default" : ""
+                                }
+                              },
+                              "required" : [ "hasPersonalDetailsIn", "insuredID", "rejectionInd" ]
+                            }
+                          }
+                        },
+                        "required" : [ "hasDetailsOfClaimIn", "hasDetailsOfRisksIn", "hasNameValue", "policyNO", "premiumAMT" ]
+                      }
+                    },
+                    "service" : {
+                      "type" : "string",
+                      "title" : "Service",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "appID" : {
+                      "type" : "string",
+                      "title" : "Appid",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "operation" : {
+                      "type" : "string",
+                      "title" : "Operation",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "transactionId" : {
+                      "type" : "string",
+                      "title" : "Transactionid",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "entity" : {
+                      "type" : "string",
+                      "title" : "Entity",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "status" : {
+                      "type" : "string",
+                      "title" : "Status",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    }
+                  },
+                  "required" : [ "Policies", "appID", "entity", "operation", "service", "status", "transactionId" ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/newBusiness" : {
+      "post" : {
+        "tags" : [ "API", "New Business", "Claim", "Payment", "Walkthrough" ],
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "Customer" : {
+                "type" : "object",
+                "description" : "Parent Payload",
+                "title" : "Customer",
+                "properties" : {
+                  "canBeIndividual" : {
+                    "type" : "object",
+                    "description" : "Policy Owner Payload",
+                    "title" : "Canbeindividual",
+                    "properties" : {
+                      "birthDT" : {
+                        "type" : "string",
+                        "description" : "Policy Owner Birth Date",
+                        "title" : "Birthdt",
+                        "pattern" : "^.*$",
+                        "default" : ""
+                      },
+                      "socialSecurityNO" : {
+                        "type" : "string",
+                        "description" : "Policy Owner Identity Number",
+                        "title" : "Socialsecurityno",
+                        "pattern" : "^.*$",
+                        "default" : ""
+                      },
+                      "genderCD" : {
+                        "type" : "string",
+                        "description" : "Policy Owner Gender",
+                        "title" : "Gendercd",
+                        "pattern" : "^.*$",
+                        "default" : ""
+                      },
+                      "firstNM" : {
+                        "type" : "string",
+                        "description" : "Policy Owner First Name",
+                        "title" : "Firstnm",
+                        "pattern" : "^.*$",
+                        "default" : ""
+                      },
+                      "hasAddressesIn" : {
+                        "type" : "array",
+                        "description" : "Policy Owner Address Payload",
+                        "title" : "Hasaddressesin",
+                        "items" : {
+                          "type" : "object",
+                          "title" : "Items",
+                          "properties" : {
+                            "mobilePhoneNO" : {
+                              "type" : "string",
+                              "description" : "Policy Owner Mobile Phone Number",
+                              "title" : "Mobilephoneno",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            },
+                            "emailAddress" : {
+                              "type" : "string",
+                              "description" : "Policy Owner Email Address",
+                              "title" : "Emailaddress",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            },
+                            "telephoneNO" : {
+                              "type" : "string",
+                              "description" : "Policy Owner Telephone Number",
+                              "title" : "Telephoneno",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "hasPolicyAccount" : {
+                    "type" : "array",
+                    "description" : "Policy Payload",
+                    "title" : "Haspolicyaccount",
+                    "items" : {
+                      "type" : "object",
+                      "title" : "Items",
+                      "properties" : {
+                        "paymentStatusCd" : {
+                          "type" : "string",
+                          "description" : "Payment Status Code for Policy",
+                          "title" : "Paymentstatuscd",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "premiumAMT" : {
+                          "type" : "string",
+                          "description" : "Premium Amount request",
+                          "title" : "Premiumamt",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "mailingResponsibiltyCd" : {
+                          "type" : "string",
+                          "description" : "Policies Correspondency Type",
+                          "title" : "Mailingresponsibiltycd",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "hasDetailsOfRisksIn" : {
+                          "type" : "array",
+                          "description" : "Insured Payload",
+                          "title" : "Hasdetailsofrisksin",
+                          "items" : {
+                            "type" : "object",
+                            "title" : "Items",
+                            "properties" : {
+                              "existingInsuranceInd" : {
+                                "type" : "string",
+                                "description" : "Insured Relationship Id",
+                                "title" : "Existinginsuranceind",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "hasPersonalDetailsIn" : {
+                                "type" : "array",
+                                "description" : "Insured Identity Payload",
+                                "title" : "Haspersonaldetailsin",
+                                "items" : {
+                                  "type" : "object",
+                                  "title" : "Items",
+                                  "properties" : {
+                                    "birthDT" : {
+                                      "type" : "string",
+                                      "description" : "Insured Birth Date",
+                                      "title" : "Birthdt",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "socialSecurityNO" : {
+                                      "type" : "string",
+                                      "description" : "Insured Identity Number",
+                                      "title" : "Socialsecurityno",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "genderCD" : {
+                                      "type" : "string",
+                                      "description" : "Insured Gender",
+                                      "title" : "Gendercd",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "firstNM" : {
+                                      "type" : "string",
+                                      "description" : "Insured First Name",
+                                      "title" : "Firstnm",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "hasAddressesIn" : {
+                                      "type" : "array",
+                                      "description" : "Insured Address Payload",
+                                      "title" : "Hasaddressesin",
+                                      "items" : {
+                                        "type" : "object",
+                                        "title" : "Items",
+                                        "properties" : {
+                                          "mobilePhoneNO" : {
+                                            "type" : "string",
+                                            "description" : "Insured Mobile Phone Number",
+                                            "title" : "Mobilephoneno",
+                                            "pattern" : "^.*$",
+                                            "default" : ""
+                                          },
+                                          "emailAddress" : {
+                                            "type" : "string",
+                                            "description" : "Insured Email Address",
+                                            "title" : "Emailaddress",
+                                            "pattern" : "^.*$",
+                                            "default" : ""
+                                          },
+                                          "addressLine1" : {
+                                            "type" : "string",
+                                            "description" : "Insured Address",
+                                            "title" : "Addressline1",
+                                            "pattern" : "^.*$",
+                                            "default" : ""
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "documentTypeCD" : {
+                                      "type" : "string",
+                                      "description" : "Insured Identity Document Type",
+                                      "title" : "Documenttypecd",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    }
+                                  }
+                                }
+                              },
+                              "forLifeUnitOfExposure" : {
+                                "type" : "array",
+                                "description" : "Life Unit of Exposure Payload",
+                                "title" : "Forlifeunitofexposure",
+                                "items" : {
+                                  "type" : "object",
+                                  "title" : "Items",
+                                  "properties" : {
+                                    "hasBeneficiaryInformationIn" : {
+                                      "type" : "array",
+                                      "description" : "Beneficiary Payload",
+                                      "title" : "Hasbeneficiaryinformationin",
+                                      "items" : {
+                                        "type" : "object",
+                                        "title" : "Items",
+                                        "properties" : {
+                                          "canBeIndividual" : {
+                                            "type" : "object",
+                                            "description" : "Beneficiary Identity Payload",
+                                            "title" : "Canbeindividual",
+                                            "properties" : {
+                                              "birthDT" : {
+                                                "type" : "string",
+                                                "description" : "Beneficiary Birth Date",
+                                                "title" : "Birthdt",
+                                                "pattern" : "^.*$",
+                                                "default" : ""
+                                              },
+                                              "socialSecurityNO" : {
+                                                "type" : "string",
+                                                "description" : "Beneficiary Identity Number",
+                                                "title" : "Socialsecurityno",
+                                                "pattern" : "^.*$",
+                                                "default" : ""
+                                              },
+                                              "genderCD" : {
+                                                "type" : "string",
+                                                "description" : "Beneficiary Gender",
+                                                "title" : "Gendercd",
+                                                "pattern" : "^.*$",
+                                                "default" : ""
+                                              },
+                                              "firstNM" : {
+                                                "type" : "string",
+                                                "description" : "Beneficiary First Name",
+                                                "title" : "Firstnm",
+                                                "pattern" : "^.*$",
+                                                "default" : ""
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "insuredRK" : {
+                                "type" : "string",
+                                "description" : "Product Id",
+                                "title" : "Insuredrk",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              }
+                            }
+                          }
+                        },
+                        "paymentMethodCD" : {
+                          "type" : "string",
+                          "description" : "Payment Method Code for Policy",
+                          "title" : "Paymentmethodcd",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "paymentModeCD" : {
+                          "type" : "string",
+                          "description" : "Payment Mode Code for Policy",
+                          "title" : "Paymentmodecd",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "title" : "Root"
+          },
+          "x-examples" : {
+            "application/json" : "{\n  \"Customer\": {\n    \"canBeIndividual\": {\n      \"birthDT\": \"2020-04-18T00:00:00\",\n      \"firstNM\": \"John Doe\",\n      \"genderCD\": \"M\",\n      \"socialSecurityNO\": \"87654321\",\n      \"hasAddressesIn\": [\n        {\n          \"telephoneNO\": \"+12345678\",\n          \"mobilePhoneNO\": \"+12345678\",\n          \"emailAddress\": \"doe.john@mail.com\"\n        }\n      ]\n    },\n    \"hasPolicyAccount\": [\n      {\n        \"mailingResponsibiltyCd\": \"true\",\n        \"paymentMethodCD\": \"TC\",\n        \"paymentModeCD\": \"P\",\n        \"paymentStatusCd\": \"PAI\",\n        \"premiumAMT\": \"12500\",\n        \"hasDetailsOfRisksIn\": [\n          {\n            \"existingInsuranceInd\": \"MI\",\n            \"insuredRK\": \"MSJQD3\",\n            \"hasPersonalDetailsIn\": [\n              {\n                \"birthDT\": \"1983-07-02T00:00:00\",\n                \"genderCD\": \"F\",\n                \"firstNM\": \"Jane Doe\",\n                \"socialSecurityNO\": \"12345678\",\n                \"documentTypeCD\": \"KTP\",\n                \"hasAddressesIn\": [\n                  {\n                    \"addressLine1\": \"Alamat tidak tersedia\",\n                    \"emailAddress\": \"testing.api@axa.co.id\",\n                    \"mobilePhoneNO\": \"0811111111111\"\n                  }\n                ]\n              }\n            ],\n            \"forLifeUnitOfExposure\": [\n              {\n                \"hasBeneficiaryInformationIn\": [\n                  {\n                    \"canBeIndividual\": {\n                      \"birthDT\": \"1983-07-02T00:00:00\",\n                      \"genderCD\": \"F\",\n                      \"socialSecurityNO\": \"123456789\",\n                      \"firstNM\": \"Jane Doe\"\n                    }\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "examples" : {
+              "application/json" : "{\n  \"Body\": {\n    \"Customer\": {\n      \"canBeIndividual\": {\n        \"genderCD\": \"M\",\n        \"hasAddressesIn\": [\n          {\n            \"telephoneNO\": \"+12345678\",\n            \"emailAddress\": \"doe.john@mail.com\",\n            \"mobilePhoneNO\": \"+12345678\"\n          }\n        ],\n        \"lastNM\": \"John Doe\",\n        \"firstNM\": \"John Doe\",\n        \"socialSecurityNO\": \"87654321\",\n        \"birthDT\": \"2020-04-18T00:00:00\"\n      },\n      \"hasPolicyAccount\": [\n        {\n          \"policyEffectiveDTTM\": \"2021-01-22T10:50:38.3637668+07:00\",\n          \"hasNameValue\": [\n            {\n              \"name\": \"correspondenceType\",\n              \"value\": \"true\"\n            },\n            {\n              \"name\": \"minClaimStartDateInpatient\"\n            },\n            {\n              \"name\": \"minClaimStartDateOutpatient\"\n            },\n            {\n              \"name\": \"maxExpiredDayInpatient\",\n              \"value\": \"0\"\n            },\n            {\n              \"name\": \"maxExpiredDayOutpatient\",\n              \"value\": \"0\"\n            },\n            {\n              \"name\": \"maxExpiredDayCriticalIllness\",\n              \"value\": \"0\"\n            },\n            {\n              \"name\": \"maxExpiredDayDeath\",\n              \"value\": \"0\"\n            }\n          ],\n          \"premiumAMT\": \"12500\",\n          \"policyNO\": \"410-430-0105904\",\n          \"paymentMethodCD\": \"TC\",\n          \"certificateNo\": \"https://waqweb08.axa-id.intraxa/createpdf/webservice1.asmx/GeneratePDF\",\n          \"isAssociatedWithLifeInsuranceProduct\": [\n            {\n              \"insuranceProductCd\": \"MSJQD3\"\n            }\n          ],\n          \"paymentModeCD\": \"P\",\n          \"policyStatusCD\": \"IN\",\n          \"hasDetailsOfRisksIn\": [\n            {\n              \"insuredID\": \"0\",\n              \"relationshipToOwnerCD\": \"MI\",\n              \"rejectionInd\": \"false\",\n              \"existingInsuranceInd\": \"MI\",\n              \"insuredRK\": \"MSJQD3\",\n              \"hasPersonalDetailsIn\": [\n                {\n                  \"genderCD\": \"F\",\n                  \"hasAddressesIn\": [\n                    {\n                      \"emailAddress\": \"testing.api@axa.co.id\"\n                    }\n                  ],\n                  \"lastNM\": \"Jane Doe\",\n                  \"firstNM\": \"Jane Doe\",\n                  \"socialSecurityNO\": \"12345678\",\n                  \"birthDT\": \"1983-07-02T00:00:00\"\n                }\n              ],\n              \"forLifeUnitOfExposure\": [\n                {\n                  \"hasBeneficiaryInformationIn\": [\n                    {\n                      \"canBeIndividual\": [\n                        {\n                          \"genderCD\": \"F\",\n                          \"hasAddressesIn\": [\n                            {}\n                          ],\n                          \"lastNM\": \"Jane Doe\",\n                          \"firstNM\": \"Jane Doe\",\n                          \"socialSecurityNO\": \"123456789\",\n                          \"birthDT\": \"1983-07-02T00:00:00\"\n                        }\n                      ],\n                      \"hasBeneficiaryXUoeDetailsIn\": [\n                        {\n                          \"benefitDistributionPCT\": \"0\"\n                        }\n                      ]\n                    }\n                  ]\n                }\n              ]\n            }\n          ],\n          \"paymentStatusCd\": \"PAI\",\n          \"paidToDT\": \"2021-01-22T10:50:38.3637668+07:00\"\n        }\n      ],\n      \"customerID\": \"000000000049048\"\n    },\n    \"operation\": \"Asmik\",\n    \"transactionId\": \"dd294f63-e670-4475-bdfe-22d1bc6d291f\",\n    \"status\": \"1\",\n    \"entity\": \"AFI\",\n    \"service\": \"addCustomer\",\n    \"appID\": \"DMTM\"\n  }\n}"
+            },
+            "schema" : {
+              "type" : "object",
+              "required" : [ "Body" ],
+              "properties" : {
+                "Body" : {
+                  "type" : "object",
+                  "title" : "Body",
+                  "properties" : {
+                    "Customer" : {
+                      "type" : "object",
+                      "title" : "Customer",
+                      "properties" : {
+                        "customerID" : {
+                          "type" : "string",
+                          "title" : "Customerid",
+                          "pattern" : "^.*$",
+                          "default" : ""
+                        },
+                        "canBeIndividual" : {
+                          "type" : "object",
+                          "title" : "Canbeindividual",
+                          "properties" : {
+                            "birthPlace" : {
+                              "type" : "string",
+                              "title" : "Birthplace",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            },
+                            "birthDT" : {
+                              "type" : "string",
+                              "title" : "Birthdt",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            },
+                            "socialSecurityNO" : {
+                              "type" : "string",
+                              "title" : "Socialsecurityno",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            },
+                            "genderCD" : {
+                              "type" : "string",
+                              "title" : "Gendercd",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            },
+                            "hasAddressesIn" : {
+                              "type" : "array",
+                              "title" : "Hasaddressesin",
+                              "items" : {
+                                "type" : "object",
+                                "title" : "Items",
+                                "properties" : {
+                                  "mobilePhoneNO" : {
+                                    "type" : "string",
+                                    "title" : "Mobilephoneno",
+                                    "pattern" : "^.*$",
+                                    "default" : ""
+                                  },
+                                  "emailAddress" : {
+                                    "type" : "string",
+                                    "title" : "Emailaddress",
+                                    "pattern" : "^.*$",
+                                    "default" : ""
+                                  },
+                                  "telephoneNO" : {
+                                    "type" : "string",
+                                    "title" : "Telephoneno",
+                                    "pattern" : "^.*$",
+                                    "default" : ""
+                                  }
+                                },
+                                "required" : [ "emailAddress", "mobilePhoneNO", "telephoneNO" ]
+                              }
+                            },
+                            "firstNM" : {
+                              "type" : "string",
+                              "title" : "Firstnm",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            },
+                            "lastNM" : {
+                              "type" : "string",
+                              "title" : "Lastnm",
+                              "pattern" : "^.*$",
+                              "default" : ""
+                            }
+                          },
+                          "required" : [ "birthDT", "birthPlace", "firstNM", "genderCD", "hasAddressesIn", "lastNM", "socialSecurityNO" ]
+                        },
+                        "hasPolicyAccount" : {
+                          "type" : "array",
+                          "title" : "Haspolicyaccount",
+                          "items" : {
+                            "type" : "object",
+                            "title" : "Items",
+                            "properties" : {
+                              "paymentStatusCd" : {
+                                "type" : "string",
+                                "title" : "Paymentstatuscd",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "paidToDT" : {
+                                "type" : "string",
+                                "title" : "Paidtodt",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "isAssociatedWithLifeInsuranceProduct" : {
+                                "type" : "array",
+                                "title" : "Isassociatedwithlifeinsuranceproduct",
+                                "items" : {
+                                  "type" : "object",
+                                  "title" : "Items",
+                                  "properties" : {
+                                    "insuranceProductCd" : {
+                                      "type" : "string",
+                                      "title" : "Insuranceproductcd",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    }
+                                  },
+                                  "required" : [ "insuranceProductCd" ]
+                                }
+                              },
+                              "premiumAMT" : {
+                                "type" : "string",
+                                "title" : "Premiumamt",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "hasNameValue" : {
+                                "type" : "array",
+                                "title" : "Hasnamevalue",
+                                "items" : {
+                                  "type" : "object",
+                                  "title" : "Items",
+                                  "properties" : {
+                                    "name" : {
+                                      "type" : "string",
+                                      "title" : "Name",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "value" : {
+                                      "type" : "string",
+                                      "title" : "Value",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    }
+                                  },
+                                  "required" : [ "name", "value" ]
+                                }
+                              },
+                              "policyNO" : {
+                                "type" : "string",
+                                "title" : "Policyno",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "hasDetailsOfRisksIn" : {
+                                "type" : "array",
+                                "title" : "Hasdetailsofrisksin",
+                                "items" : {
+                                  "type" : "object",
+                                  "title" : "Items",
+                                  "properties" : {
+                                    "existingInsuranceInd" : {
+                                      "type" : "string",
+                                      "title" : "Existinginsuranceind",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "hasPersonalDetailsIn" : {
+                                      "type" : "array",
+                                      "title" : "Haspersonaldetailsin",
+                                      "items" : {
+                                        "type" : "object",
+                                        "title" : "Items",
+                                        "properties" : {
+                                          "birthDT" : {
+                                            "type" : "string",
+                                            "title" : "Birthdt",
+                                            "pattern" : "^.*$",
+                                            "default" : ""
+                                          },
+                                          "socialSecurityNO" : {
+                                            "type" : "string",
+                                            "title" : "Socialsecurityno",
+                                            "pattern" : "^.*$",
+                                            "default" : ""
+                                          },
+                                          "genderCD" : {
+                                            "type" : "string",
+                                            "title" : "Gendercd",
+                                            "pattern" : "^.*$",
+                                            "default" : ""
+                                          },
+                                          "hasAddressesIn" : {
+                                            "type" : "array",
+                                            "title" : "Hasaddressesin",
+                                            "items" : {
+                                              "type" : "object",
+                                              "title" : "Items",
+                                              "properties" : {
+                                                "emailAddress" : {
+                                                  "type" : "string",
+                                                  "title" : "Emailaddress",
+                                                  "pattern" : "^.*$",
+                                                  "default" : ""
+                                                }
+                                              },
+                                              "required" : [ "emailAddress" ]
+                                            }
+                                          },
+                                          "firstNM" : {
+                                            "type" : "string",
+                                            "title" : "Firstnm",
+                                            "pattern" : "^.*$",
+                                            "default" : ""
+                                          },
+                                          "lastNM" : {
+                                            "type" : "string",
+                                            "title" : "Lastnm",
+                                            "pattern" : "^.*$",
+                                            "default" : ""
+                                          }
+                                        },
+                                        "required" : [ "birthDT", "firstNM", "genderCD", "hasAddressesIn", "lastNM", "socialSecurityNO" ]
+                                      }
+                                    },
+                                    "relationshipToOwnerCD" : {
+                                      "type" : "string",
+                                      "title" : "Relationshiptoownercd",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "rejectionInd" : {
+                                      "type" : "string",
+                                      "title" : "Rejectionind",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "forLifeUnitOfExposure" : {
+                                      "type" : "array",
+                                      "title" : "Forlifeunitofexposure",
+                                      "items" : {
+                                        "type" : "object",
+                                        "title" : "Items",
+                                        "properties" : {
+                                          "hasBeneficiaryInformationIn" : {
+                                            "type" : "array",
+                                            "title" : "Hasbeneficiaryinformationin",
+                                            "items" : {
+                                              "type" : "object",
+                                              "title" : "Items",
+                                              "properties" : {
+                                                "canBeIndividual" : {
+                                                  "type" : "array",
+                                                  "title" : "Canbeindividual",
+                                                  "items" : {
+                                                    "type" : "object",
+                                                    "title" : "Items",
+                                                    "properties" : {
+                                                      "birthDT" : {
+                                                        "type" : "string",
+                                                        "title" : "Birthdt",
+                                                        "pattern" : "^.*$",
+                                                        "default" : ""
+                                                      },
+                                                      "socialSecurityNO" : {
+                                                        "type" : "string",
+                                                        "title" : "Socialsecurityno",
+                                                        "pattern" : "^.*$",
+                                                        "default" : ""
+                                                      },
+                                                      "genderCD" : {
+                                                        "type" : "string",
+                                                        "title" : "Gendercd",
+                                                        "pattern" : "^.*$",
+                                                        "default" : ""
+                                                      },
+                                                      "hasAddressesIn" : {
+                                                        "type" : "array",
+                                                        "title" : "Hasaddressesin",
+                                                        "items" : {
+                                                          "type" : "object",
+                                                          "title" : "Items",
+                                                          "properties" : { }
+                                                        }
+                                                      },
+                                                      "firstNM" : {
+                                                        "type" : "string",
+                                                        "title" : "Firstnm",
+                                                        "pattern" : "^.*$",
+                                                        "default" : ""
+                                                      },
+                                                      "lastNM" : {
+                                                        "type" : "string",
+                                                        "title" : "Lastnm",
+                                                        "pattern" : "^.*$",
+                                                        "default" : ""
+                                                      }
+                                                    },
+                                                    "required" : [ "birthDT", "firstNM", "genderCD", "hasAddressesIn", "lastNM", "socialSecurityNO" ]
+                                                  }
+                                                },
+                                                "hasBeneficiaryXUoeDetailsIn" : {
+                                                  "type" : "array",
+                                                  "title" : "Hasbeneficiaryxuoedetailsin",
+                                                  "items" : {
+                                                    "type" : "object",
+                                                    "title" : "Items",
+                                                    "properties" : {
+                                                      "benefitDistributionPCT" : {
+                                                        "type" : "string",
+                                                        "title" : "Benefitdistributionpct",
+                                                        "pattern" : "^.*$",
+                                                        "default" : ""
+                                                      }
+                                                    },
+                                                    "required" : [ "benefitDistributionPCT" ]
+                                                  }
+                                                }
+                                              },
+                                              "required" : [ "canBeIndividual", "hasBeneficiaryXUoeDetailsIn" ]
+                                            }
+                                          }
+                                        },
+                                        "required" : [ "hasBeneficiaryInformationIn" ]
+                                      }
+                                    },
+                                    "insuredID" : {
+                                      "type" : "string",
+                                      "title" : "Insuredid",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    },
+                                    "insuredRK" : {
+                                      "type" : "string",
+                                      "title" : "Insuredrk",
+                                      "pattern" : "^.*$",
+                                      "default" : ""
+                                    }
+                                  },
+                                  "required" : [ "existingInsuranceInd", "forLifeUnitOfExposure", "hasPersonalDetailsIn", "insuredID", "insuredRK", "rejectionInd", "relationshipToOwnerCD" ]
+                                }
+                              },
+                              "policyEffectiveDTTM" : {
+                                "type" : "string",
+                                "title" : "Policyeffectivedttm",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "paymentMethodCD" : {
+                                "type" : "string",
+                                "title" : "Paymentmethodcd",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "paymentModeCD" : {
+                                "type" : "string",
+                                "title" : "Paymentmodecd",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              },
+                              "policyStatusCD" : {
+                                "type" : "string",
+                                "title" : "Policystatuscd",
+                                "pattern" : "^.*$",
+                                "default" : ""
+                              }
+                            },
+                            "required" : [ "hasDetailsOfRisksIn", "hasNameValue", "isAssociatedWithLifeInsuranceProduct", "paidToDT", "paymentMethodCD", "paymentModeCD", "paymentStatusCd", "policyEffectiveDTTM", "policyNO", "policyStatusCD", "premiumAMT" ]
+                          }
+                        }
+                      },
+                      "required" : [ "canBeIndividual", "customerID", "hasPolicyAccount" ]
+                    },
+                    "service" : {
+                      "type" : "string",
+                      "title" : "Service",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "appID" : {
+                      "type" : "string",
+                      "title" : "Appid",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "operation" : {
+                      "type" : "string",
+                      "title" : "Operation",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "transactionId" : {
+                      "type" : "string",
+                      "title" : "Transactionid",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "entity" : {
+                      "type" : "string",
+                      "title" : "Entity",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    },
+                    "status" : {
+                      "type" : "string",
+                      "title" : "Status",
+                      "pattern" : "^.*$",
+                      "default" : ""
+                    }
+                  },
+                  "required" : [ "Customer", "appID", "entity", "operation", "service", "status", "transactionId" ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
