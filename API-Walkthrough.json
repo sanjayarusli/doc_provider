@@ -7,10 +7,7 @@
 	"termsOfService": "https://developer.axa.co.id/terms/",
 	"contact": {
       "email": "api.support@axa.co.id"
-    },
-	"x-logo":{
-		"url":"https://www.zuora.com/wp-content/uploads/2016/10/zuora-dev-logo-api-ref.svg"
-	}
+    }
   },
   "host" : "axaiddev.apigw-az-au.webmethods.io",
   "basePath" : "/gateway/API-Walkthrough/1.0",
